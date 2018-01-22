@@ -1,4 +1,3 @@
-// Copyright (c) 2016 Piotr Witek <piotrek.witek@gmail.com> (http://piotrwitek.github.io)
 // (tracking issue: https://github.com/Microsoft/TypeScript/issues/6606)
 
 /**

@@ -1,6 +1,42 @@
 import { SetComplement } from '.';
 
 /**
+ * Represents all primitive types in JavaScript, opposite of object
+ */
+export type Primitive =
+  | boolean
+  | number
+  | string
+  | symbol
+  | null
+  | undefined;
+
+/**
+ * Imitate a Flow's "mixed type" - in contrast to `any` it doesn't disable type-checking
+ * so you wont be able to pass it to typed code without a proper type guard
+ * usefull to make a distinction between trusted (`any`) and untrusted (`mixed`) data
+ * @see https://flow.org/en/docs/types/mixed/
+ */
+export type mixed = Primitive | object;
+
+function stringify(value: mixed) {
+  if (typeof value === 'string') {
+    return '' + value; // Works!
+  } else {
+    return value;
+  }
+}
+stringify('foo');
+stringify(3.14);
+stringify(null);
+stringify({});
+stringify(stringify2);
+
+const f1 = (str: string) => str;
+f1(null as any);
+f1(null as mixed);
+
+/**
  * $Keys
  * @desc get the union type of all the keys in an object type `T`
  * @see https://flow.org/en/docs/types/utilities/#toc-keys

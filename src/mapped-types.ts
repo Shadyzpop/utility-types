@@ -1,8 +1,6 @@
 // tslint:disable:max-line-length
-/**
- * Credits to all the people who given inspiration and shared some very usefull code snippets
- * in the following github issue: https://github.com/Microsoft/TypeScript/issues/12215
- */
+// Credits to all the people who given inspiration and shared some very usefull code snippets
+// in the following github issue: https://github.com/Microsoft/TypeScript/issues/12215
 
 /**
  * SetDifference
