@@ -17,7 +17,22 @@ export type Primitive =
  * usefull to make a distinction between trusted (`any`) and untrusted (`mixed`) data
  * @see https://flow.org/en/docs/types/mixed/
  */
-export type mixed = Primitive | object;
+export type mixed = Primitive | { [k: string]: any };
+export type unknown = {} | null | undefined;
+
+type Foo = { type: 'foo' };
+const isFoo = (thing: mixed): thing is Foo => {
+  if (thing != null && typeof thing === 'object') {
+    return thing.type === 'foo';
+  } else {
+    return false;
+  }
+};
+
+const obj: mixed = {};
+if (isFoo(obj)) {
+  obj;
+}
 
 function stringify(value: mixed) {
   if (typeof value === 'string') {
@@ -30,11 +45,12 @@ stringify('foo');
 stringify(3.14);
 stringify(null);
 stringify({});
-stringify(stringify2);
+stringify(stringify);
 
 const f1 = (str: string) => str;
 f1(null as any);
 f1(null as mixed);
+f1(null as unknown);
 
 /**
  * $Keys
